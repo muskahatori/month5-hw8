@@ -1,19 +1,21 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import DeadEnd from './DeadEnd';
-import Treasure from './Treasure';
-import EchoInput from './EchoInput';
+import { useState } from 'react';
 
 function App() {
+  const [text, setText] = useState('');
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/dead-end' element={<DeadEnd />} />
-        <Route path='/treasure' element={<Treasure />} />
-        <Route path='/echo' element={<EchoInput />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+
+      <p>Вы ввели: {text === '' ? 'пустую строку' : text}</p>
+      <p>Количество символов: {text.length}</p>
+
+      <button onClick={() => setText('')}>Очистить</button>
+    </div>
   );
 }
 
